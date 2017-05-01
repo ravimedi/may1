@@ -18,7 +18,8 @@ pipeline {
     }
     stage('Deploy-Tomcat') {
       steps {
-        sh 'sudo su - javaee7 -c /home/javaee7/deploy.sh'
+        sh '''JNAME=$(echo $JOB_NAME |cut -d / -f2)
+sudo su - javaee7 -c "/home/javaee7/deploy-pl.sh $JNAME"'''
       }
     }
   }
